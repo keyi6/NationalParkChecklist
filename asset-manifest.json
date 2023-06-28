@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/NationalParkChecklist/static/css/main.c6f240b6.css",
-    "main.js": "/NationalParkChecklist/static/js/main.368d47f1.js",
+    "main.js": "/NationalParkChecklist/static/js/main.2f2b79b4.js",
     "index.html": "/NationalParkChecklist/index.html",
     "main.c6f240b6.css.map": "/NationalParkChecklist/static/css/main.c6f240b6.css.map",
-    "main.368d47f1.js.map": "/NationalParkChecklist/static/js/main.368d47f1.js.map"
+    "main.2f2b79b4.js.map": "/NationalParkChecklist/static/js/main.2f2b79b4.js.map"
   },
   "entrypoints": [
     "static/css/main.c6f240b6.css",
-    "static/js/main.368d47f1.js"
+    "static/js/main.2f2b79b4.js"
   ]
 }
