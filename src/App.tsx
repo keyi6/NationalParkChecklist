@@ -1,9 +1,12 @@
-import React from 'react';
-import { CheckList } from './components/CheckList';
-import './App.css';
+import React from "react";
+import { Checklist } from "./components/Checklist";
+import { Screenshot } from "./components/Screenshot";
 
 export default function App() {
     return (
-        <CheckList />
+        <>
+            <Screenshot />
+            <Checklist />
+        </>
     );
 }
