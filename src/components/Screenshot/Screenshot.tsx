@@ -8,12 +8,10 @@ const Button = styled.button`
     top: 20px;
 `;
 
-export function Screenshot() {
-    const onSave = useCallback(() => {
-
-    }, []);
-
+export function Screenshot(props: {
+    onScreenshot: () => void;
+}) {
     return (
-        <Button onClick={onSave}>Save as image</Button>
+        <Button onClick={props.onScreenshot}>Save as image</Button>
     );
 }

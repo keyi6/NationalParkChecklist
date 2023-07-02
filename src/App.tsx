@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Checklist } from "./components/Checklist";
-import { Screenshot } from "./components/Screenshot";
+import { Screenshot, useScreenshot } from "./components/Screenshot";
 
 export default function App() {
+    const checklistRef = useRef<HTMLDivElement>(null);
+    const onScreenshot = useScreenshot(checklistRef);
+
     return (
         <>
-            <Screenshot />
-            <Checklist />
+            <Screenshot onScreenshot={onScreenshot} />
+            <Checklist ref={checklistRef} />
         </>
     );
 }

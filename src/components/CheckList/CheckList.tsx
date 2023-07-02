@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { forwardRef, useState } from "react";
 import styled from "styled-components";
 import { IParkInfo, PARK_INFOS } from "./ParkNames";
 
@@ -6,7 +6,7 @@ const Wrapper = styled.div`
     width: 100%;
     margin: 0 auto;
     text-align: center;
-    & h1 { margin-top: 60px; }
+    & > h1 { padding-top: 40px; }
 
     @media (min-width: 768px) {
         max-width: 900px;
@@ -73,7 +73,7 @@ function Item(props: {
     const [selected, setSelected] = useState<boolean>(props.initialSelected || false);
 
     return (
-        <IconWrapper style={{ filter: selected ? 'none' : 'opacity(0.2)' }}
+        <IconWrapper style={{ opacity: selected ? 1 : 0.2 }}
             onClick={() => setSelected(!selected)}>
             <img src={`icons/${props.filename}.jpg`} alt={props.parkInfo.name} />
             <span>
@@ -84,19 +84,15 @@ function Item(props: {
     );
 }
 
-export function Checklist() {
-    return (
-        <Wrapper>
-            <h1>National Park Checklist</h1>
-
-            <Grid>
-                {
-                    new Array(9).fill(0).map((_, i) => new Array(7).fill(0).map((_, j) => (
-                        <Item filename={`icon-${i}-${j}`} parkInfo={PARK_INFOS[i * 7 + j]} key={`item-${i}-${j}`} />
-                    )))
-                }
-            </Grid>
-
-        </Wrapper>
-    );
-}
+export const Checklist = forwardRef<HTMLDivElement>((_, ref) => (
+    <Wrapper ref={ref}>
+        <h1>National Park Checklist</h1>
+        <Grid>
+            {
+                new Array(9).fill(0).map((_, i) => new Array(7).fill(0).map((_, j) => (
+                    <Item filename={`icon-${i}-${j}`} parkInfo={PARK_INFOS[i * 7 + j]} key={`item-${i}-${j}`} />
+                )))
+            }
+        </Grid>
+    </Wrapper>
+));
