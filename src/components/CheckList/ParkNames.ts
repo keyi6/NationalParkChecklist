@@ -1,6 +1,7 @@
 export interface IParkInfo {
     name: string;
     state: string;
+    id: string;
 }
 
 export const PARK_INFOS: IParkInfo[] = [
@@ -67,4 +68,7 @@ export const PARK_INFOS: IParkInfo[] = [
     { name: "Yellowstone", state: "Wyoming" },
     { name: "Yosemite", state: "California" },
     { name: "Zion", state: "Utah" },
-];
+].map((info) => ({
+    id: info.name.replaceAll(' ', ''),
+    ...info,
+}));
