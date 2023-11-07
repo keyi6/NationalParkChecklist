@@ -1,4 +1,4 @@
-import React, { forwardRef, useState } from "react";
+import React, { forwardRef, useMemo, useState } from "react";
 import styled from "styled-components";
 import { IParkInfo, PARK_INFOS } from "./ParkNames";
 
@@ -66,19 +66,20 @@ const IconWrapper = styled.div`
 `;
 
 function Item(props: {
-    filename: string;
     parkInfo: IParkInfo;
     initialSelected?: boolean;
 }) {
     const [selected, setSelected] = useState<boolean>(props.initialSelected || false);
+    const { name, state } = props.parkInfo;
+    const filename = useMemo(() => `icons/${name.replaceAll(' ', '')}.jpg`, [name]);
 
     return (
         <IconWrapper style={{ opacity: selected ? 1 : 0.2 }}
             onClick={() => setSelected(!selected)}>
-            <img src={`icons/${props.filename}.jpg`} alt={props.parkInfo.name} />
+            <img src={filename} alt={props.parkInfo.name} />
             <span>
-                <h1>{props.parkInfo.name}</h1>
-                <p>{props.parkInfo.state}</p>
+                <h1>{name}</h1>
+                <p>{state}</p>
             </span>
         </IconWrapper>
     );
@@ -89,9 +90,9 @@ export const Checklist = forwardRef<HTMLDivElement>((_, ref) => (
         <h1>National Park Checklist</h1>
         <Grid>
             {
-                new Array(9).fill(0).map((_, i) => new Array(7).fill(0).map((_, j) => (
-                    <Item filename={`icon-${i}-${j}`} parkInfo={PARK_INFOS[i * 7 + j]} key={`item-${i}-${j}`} />
-                )))
+                PARK_INFOS.map((info) => (
+                    <Item parkInfo={info} key={`icon-${info.name}`} />
+                ))
             }
         </Grid>
     </Wrapper>
